@@ -1,0 +1,30 @@
+var pops = [{longName: 'Dallas Cowboys', name: 'Dallas' },
+            {longName: 'Silicon Valley', name: 'San Jose' },
+           {longName: 'Silicon Valley', name: 'Bangalore' },
+           {longName: 'Silicon Valley', name: 'Mangalore' }];
+
+function translateDuplicates(pops) {
+  const translatedAllPops = [];
+  let translatedPops = {};
+  let index = -1;
+      pops.map((pop) => {
+        index = translatedAllPops.map(function(e) { 
+                        return e.label; }).indexOf(pop.longName);
+        if(index > 0) {
+//           console.log('existing ', translatedAllPops[index]);
+          translatedAllPops[index].value.push(pop.name);
+        }
+        else {
+         translatedPops = {
+          label: pop.longName,
+          value: [pop.name]
+        }; 
+         if (pop.longName.toUpperCase() !== ('None').toUpperCase()) {
+          translatedAllPops.push(translatedPops);
+          }
+        }
+      });
+  console.log(translatedAllPops);
+}
+
+translateDuplicates(pops);
